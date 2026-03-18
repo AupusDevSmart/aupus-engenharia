@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sun, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -18,16 +17,20 @@ export default function ClubePage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-aupus-green selection:text-aupus-navy scroll-smooth">
       
-      <nav className="fixed w-full z-50 bg-white/40 backdrop-blur-xl border-b border-white/30 h-20 flex items-center transition-all duration-300">
+      <nav className="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm h-20 flex items-center transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Image 
-              src="/logo.png" 
-              alt="Clube Aupus" 
-              width={180} 
-              height={60} 
-              className="h-10 w-auto object-contain" 
+            <Image
+              src="/logo-clube.png"
+              alt="Clube Aupus"
+              width={180}
+              height={60}
+              className="h-10 w-auto object-contain"
               priority
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/logo.png';
+              }}
             />
           </div>
 
