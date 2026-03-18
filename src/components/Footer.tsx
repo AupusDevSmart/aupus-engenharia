@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { Instagram, MapPin, Phone, Mail, ArrowRight, X, FileText, Shield } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -59,8 +58,9 @@ const termsContent = (
 
 export default function Footer() {
   const pathname = usePathname();
-  const isClubePage = pathname === '/clube';
-  
+  // Verifica se está na página do clube através do pathname ou do domínio
+  const isClubePage = pathname === '/clube' || (typeof window !== 'undefined' && window.location.hostname === 'clube.aupusenergia.com.br');
+
   const [activeModal, setActiveModal] = useState<'privacy' | 'terms' | null>(null);
 
   return (
@@ -98,17 +98,17 @@ export default function Footer() {
             <ul className="space-y-4">
               {isClubePage ? (
                 <li>
-                  <Link href="/" className="hover:text-aupus-green transition-colors flex items-center gap-2 group">
-                    <ArrowRight size={16} className="text-aupus-green group-hover:translate-x-1 transition-transform" /> 
+                  <a href="https://aupusenergia.com.br" className="hover:text-aupus-green transition-colors flex items-center gap-2 group">
+                    <ArrowRight size={16} className="text-aupus-green group-hover:translate-x-1 transition-transform" />
                     Aupus Energia
-                  </Link>
+                  </a>
                 </li>
               ) : (
                 <li>
-                  <Link href="/clube" className="hover:text-aupus-green transition-colors flex items-center gap-2 group">
-                    <ArrowRight size={16} className="text-aupus-green group-hover:translate-x-1 transition-transform" /> 
+                  <a href="https://clube.aupusenergia.com.br" className="hover:text-aupus-green transition-colors flex items-center gap-2 group">
+                    <ArrowRight size={16} className="text-aupus-green group-hover:translate-x-1 transition-transform" />
                     Clube Aupus
-                  </Link>
+                  </a>
                 </li>
               )}
             </ul>
@@ -123,7 +123,7 @@ export default function Footer() {
               </li>
               
               <li>
-                <Link href="/clube" className="hover:text-aupus-green transition-colors block py-1">Energia por Assinatura</Link>
+                <a href="https://clube.aupusenergia.com.br" className="hover:text-aupus-green transition-colors block py-1">Energia por Assinatura</a>
               </li>
             </ul>
           </div>
@@ -159,9 +159,9 @@ export default function Footer() {
           <p>© 2026 Santares. Todos os direitos reservados.</p>
           
           <div className="flex flex-col md:flex-row items-center gap-6">
-             <span>
+             {/* <span>
                Desenvolvido por <a href="https://weniu.com.br" target="_blank" rel="noopener noreferrer" className="text-white hover:text-aupus-green transition-colors font-bold">weniu</a>
-             </span>
+             </span> */}
              
              <div className="flex gap-6">
                 <button 
