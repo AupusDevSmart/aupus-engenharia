@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-aupus-navy: #0A192F;
+  /* A variável mantém o nome para evitar refatoração estrutural, mas renderiza Azul Royal */
+  --color-aupus-green: #00fd4a;
+  --color-aupus-dark: #020C1B;
+  --color-aupus-light: #F8FAFC;
+  --color-aupus-white: #FFFFFF;
+  --color-aupus-slate: #64748B;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --background: var(--color-aupus-light);
+  --foreground: var(--color-aupus-navy);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
