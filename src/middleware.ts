@@ -3,14 +3,18 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
+  const pathname = request.nextUrl.pathname;
 
   // Se estiver acessando pelo domínio clube.aupusenergia.com.br
   if (hostname === 'clube.aupusenergia.com.br' || hostname.startsWith('clube.aupusenergia.com.br')) {
-    // Pegar o pathname atual
-    const pathname = request.nextUrl.pathname;
 
-    // Se já estiver em /clube, não fazer nada
-    if (pathname.startsWith('/clube')) {
+    // Não reescrever arquivos estáticos e recursos do Next.js
+    if (
+      pathname.startsWith('/_next') ||
+      pathname.startsWith('/api') ||
+      pathname.includes('.') || // Arquivos com extensão (imagens, etc)
+      pathname.startsWith('/clube') // Já está na rota correta
+    ) {
       return NextResponse.next();
     }
 
