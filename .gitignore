@@ -70,3 +70,7 @@ tmp/
 *.rar
 *.tar
 *.zip
+
+.claude
+
+.next/

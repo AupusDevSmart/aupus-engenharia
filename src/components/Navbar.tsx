@@ -15,11 +15,11 @@ export default function Navbar() {
     { name: "Metodologia", href: "#quem-somos" }, 
     { name: "Serviços Técnicos", href: "#servicos" },
     { name: "Inovação", href: "#inovacao" },
-    { name: "Clube Aupus", href: "/clube" },
+    { name: "Clube Aupus", href: "https://clube.aupusenergia.com.br" },
   ];
 
   return (
-    <nav className="fixed w-full z-50 bg-white/30 backdrop-blur-md border-b border-slate-200/50 shadow-sm transition-all h-20">
+    <nav className="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm transition-all h-20">
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
         
         {/* LOGO */}
@@ -71,8 +71,8 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE MENU DROPDOWN */}
-      <div 
-        className={`md:hidden absolute top-20 left-0 w-full bg-white/70 backdrop-blur-md border-b border-slate-100 shadow-xl overflow-hidden transition-all duration-300 ease-in-out ${
+      <div
+        className={`md:hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xl overflow-hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
