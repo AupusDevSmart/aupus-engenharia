@@ -157,6 +157,7 @@ export default function Footer() {
         {/* COPYRIGHT E LINKS JURÍDICOS */}
         <div className="border-t border-white/10 pt-8 mt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-xs opacity-60">
           <p>© 2026 Santares. Todos os direitos reservados.</p>
+          <p>CNPJ: 36.888.984/0001-36</p>
           
           <div className="flex flex-col md:flex-row items-center gap-6">
              {/* <span>
