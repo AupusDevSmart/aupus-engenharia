@@ -75,9 +75,9 @@ export default function SolarCalculator() {
         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
       </a>
       
-      <p className="text-center text-xs text-slate-400 mt-4">
+      {/* <p className="text-center text-xs text-slate-400 mt-4">
         *Cálculo base estimado em 25% de economia.
-      </p>
+      </p> */}
     </div>
   );
 }
