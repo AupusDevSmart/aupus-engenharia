@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ConsultorTracker from "../components/ConsultorTracker";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className={`${inter.variable} font-sans bg-aupus-white text-aupus-navy antialiased selection:bg-aupus-green selection:text-aupus-navy overflow-x-hidden`}>
+        <ConsultorTracker />
         {children}
       </body>
     </html>

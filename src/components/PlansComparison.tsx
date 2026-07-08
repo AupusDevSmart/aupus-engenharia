@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Check, Zap, ArrowRight } from 'lucide-react';
+import WhatsappLink from './WhatsappLink';
 
 export default function PlansComparison() {
   return (
@@ -70,15 +71,12 @@ export default function PlansComparison() {
               </li>
             </ul>
 
-            <a 
-              href="https://wa.me/5562996547888" 
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsappLink
               className="w-full mt-8 bg-aupus-navy text-white py-4 rounded-lg font-bold hover:bg-slate-800 transition-all shadow-lg flex justify-center items-center gap-2 group cursor-pointer"
             >
               QUERO UMA ANÁLISE GRATUITA
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
-            </a>
+            </WhatsappLink>
             
             <p className="text-center text-[10px] text-slate-400 mt-3">Consulte condições para sua região.</p>
           </div>

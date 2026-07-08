@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
+import WhatsappLink from './WhatsappLink';
 
 const faqs = [
   {
@@ -126,15 +127,12 @@ export default function FaqClube() {
                 </li>
               </ul>
 
-              <a 
-                href="https://wa.me/5562996547888"
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsappLink
                 className="inline-flex items-center gap-2 bg-aupus-green text-aupus-navy px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all shadow-lg w-full md:w-auto justify-center"
               >
                 <MessageCircle size={20} />
                 FALAR NO WHATSAPP
-              </a>
+              </WhatsappLink>
             </div>
           </div>
 

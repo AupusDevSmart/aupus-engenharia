@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Zap, ArrowRight, PiggyBank } from 'lucide-react';
+import WhatsappLink from './WhatsappLink';
 
 export default function SolarCalculator() {
   const [billValue, setBillValue] = useState(500);
@@ -65,15 +66,12 @@ export default function SolarCalculator() {
         </div>
       </div>
 
-      <a 
-        href="https://wa.me/5562996547888" 
-        target="_blank"
-        rel="noopener noreferrer"
+      <WhatsappLink
         className="w-full bg-aupus-green text-aupus-navy py-4 rounded-lg font-bold text-lg hover:brightness-95 hover:shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer"
       >
         QUERO ECONOMIZAR {formatCurrency(annualSavings)}
         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-      </a>
+      </WhatsappLink>
       
       {/* <p className="text-center text-xs text-slate-400 mt-4">
         *Cálculo base estimado em 25% de economia.
