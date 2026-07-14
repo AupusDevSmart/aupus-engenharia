@@ -5,7 +5,9 @@
 // mesmo em visitas futuras sem o parâmetro na URL.
 
 const STORAGE_KEY = 'aupus_consultor';
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 ano
+const TTL_DIAS = 5;
+const COOKIE_MAX_AGE = 60 * 60 * 24 * TTL_DIAS; // 5 dias
+const TTL_MS = COOKIE_MAX_AGE * 1000;
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.aupusenergia.com.br/api';
 
@@ -17,6 +19,7 @@ type Consultor = {
   nome?: string | null;
   whatsapp?: string | null;
   capturadoEm?: string;
+  expiraEm?: number; // timestamp (ms) — código expira em 5 dias
 };
 
 function lerCookie(): Consultor | null {
@@ -30,7 +33,12 @@ function lerCookie(): Consultor | null {
 }
 
 function salvar(consultor: Consultor) {
-  const json = JSON.stringify(consultor);
+  // Mantém a validade original (5 dias a partir da 1ª captura); só define quando ausente
+  const comExpiracao: Consultor = {
+    ...consultor,
+    expiraEm: consultor.expiraEm ?? Date.now() + TTL_MS,
+  };
+  const json = JSON.stringify(comExpiracao);
   try {
     localStorage.setItem(STORAGE_KEY, json);
   } catch {
@@ -48,16 +56,26 @@ function limpar() {
   document.cookie = `${STORAGE_KEY}=; max-age=0; path=/`;
 }
 
+// Descarta o código se já passou dos 5 dias
+function seValido(consultor: Consultor | null): Consultor | null {
+  if (!consultor) return null;
+  if (consultor.expiraEm && Date.now() > consultor.expiraEm) {
+    limpar();
+    return null;
+  }
+  return consultor;
+}
+
 export function getConsultorSalvo(): Consultor | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) return seValido(JSON.parse(raw));
   } catch {
     // cai pro cookie
   }
-  const doCookie = lerCookie();
+  const doCookie = seValido(lerCookie());
   if (doCookie) {
-    // restaura o localStorage a partir do cookie
+    // restaura o localStorage a partir do cookie (preservando a validade original)
     salvar(doCookie);
   }
   return doCookie;
@@ -110,4 +128,47 @@ export function getWhatsappUrl(): string {
   const consultor = getConsultorSalvo();
   const numero = consultor?.whatsapp || DEFAULT_WHATSAPP;
   return `https://wa.me/${numero}`;
+}
+
+type LeadDados = {
+  name: string;
+  phone: string;
+  email?: string | null;
+  propertyType: string;
+  message: string;
+};
+
+/**
+ * Notifica o consultor salvo sobre um novo lead do formulário, via template
+ * oficial de WhatsApp (backend `encaminhar_para_consultor`).
+ * Retorna true se o backend confirmou o envio. Retorna false quando não há
+ * consultor salvo ou o envio falhou — nesses casos segue-se o fluxo normal.
+ */
+export async function notificarLeadConsultor(dados: LeadDados): Promise<boolean> {
+  const consultor = getConsultorSalvo();
+  if (!consultor?.codigo) return false;
+
+  try {
+    const res = await fetch(
+      `${API_URL}/publico/consultor/${encodeURIComponent(consultor.codigo)}/lead`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          nome: dados.name,
+          telefone: dados.phone,
+          email: dados.email || null,
+          tipo_imovel: dados.propertyType,
+          mensagem: dados.message,
+        }),
+      }
+    );
+
+    if (!res.ok) return false;
+    const json = await res.json();
+    return json?.success === true;
+  } catch {
+    // sem rede/CORS/erro no backend — segue o fluxo normal
+    return false;
+  }
 }

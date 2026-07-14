@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
 import WhatsappLink from './WhatsappLink';
+import { notificarLeadConsultor } from '@/lib/consultor';
 
 const faqs = [
   {
@@ -52,16 +53,25 @@ export default function FaqClube() {
     setFormData({ ...formData, bill: formatted });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulação de requisição à API
-    setTimeout(() => {
+
+    // Se o visitante veio por um consultor, notifica ele via template de WhatsApp
+    // (backend). Sem consultor, segue o fluxo normal (apenas confirmação).
+    try {
+      await notificarLeadConsultor({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        propertyType: formData.accountType,
+        message: `Conta média mensal: ${formData.bill || 'não informado'}`,
+      });
+    } finally {
       setIsSubmitting(false);
       alert("Solicitação recebida. Nossa equipe entrará em contato em breve.");
       setFormData({ name: '', email: '', phone: '', accountType: '', bill: '' });
-    }, 1000);
+    }
   };
 
   return (
