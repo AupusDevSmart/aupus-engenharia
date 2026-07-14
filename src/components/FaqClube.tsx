@@ -8,7 +8,7 @@ import { notificarLeadConsultor } from '@/lib/consultor';
 const faqs = [
   {
     question: "Preciso fazer alguma obra no meu telhado?",
-    answer: "Não! Nenhuma placa é instalada na sua casa, zero obras. A energia é gerada em nossas usinas e injetada diretamente na rede da concessionária, chegando a você pela rede elétrica que já existe."
+    answer: "Não! Nenhum painel solar é instalado na sua casa, zero obras. A energia é gerada nas nossas usinas solares e injetada diretamente na rede da concessionária, chegando até você pela rede elétrica que já existe."
   },
   {
     question: "E se não fizer sol ou for de noite?",

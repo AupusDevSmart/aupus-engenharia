@@ -7,7 +7,7 @@ import WhatsappLink from './WhatsappLink';
 export default function SolarCalculator() {
   const [billValue, setBillValue] = useState(500);
 
-  const monthlySavings = billValue * 0.25; 
+  const monthlySavings = billValue * 0.20;
   const annualSavings = monthlySavings * 12;
 
   const formatCurrency = (value: number) => {
@@ -73,9 +73,9 @@ export default function SolarCalculator() {
         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
       </WhatsappLink>
       
-      {/* <p className="text-center text-xs text-slate-400 mt-4">
-        *Cálculo base estimado em 25% de economia.
-      </p> */}
+      <p className="text-center text-xs text-slate-400 mt-4">
+        *Estimativa com base em até 20% de economia sobre a conta atual.
+      </p>
     </div>
   );
 }

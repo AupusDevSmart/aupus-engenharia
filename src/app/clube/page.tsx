@@ -10,7 +10,7 @@ import HeroBackground from '../../components/HeroBackground';
 
 export const metadata = {
   title: "Clube Aupus",
-  description: "Economize até 25% na conta de luz sem instalar painéis e sem obras. Adesão digital para residências e comércios.",
+  description: "Economize até 20% na conta de luz sem instalar painéis solares e sem obras. Adesão 100% digital para residências e comércios.",
 };
 
 export default function ClubePage() {
@@ -67,21 +67,21 @@ export default function ClubePage() {
             </h1>
             
             <p className="text-lg text-slate-600 leading-relaxed max-w-lg font-medium">
-              Entre para o Clube Aupus e participe do melhor clube de economia de energia do Brasil, reduza sua conta de agora. <strong>Sem obras, sem fidelidade e 100% digital.</strong>
+              Entre para o Clube Aupus, o melhor clube de economia de energia do Brasil, e comece a pagar menos na conta de luz já no próximo mês. <strong>Sem obras, sem fidelidade e 100% digital.</strong>
             </p>
 
             <div className="space-y-4 bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white">
               <div className="flex items-center gap-3 text-slate-700 font-medium">
                  <div className="bg-green-100 p-1 rounded-full"><CheckCircle2 size={16} className="text-green-600" /></div>
-                 <span>Zero investimento (você não compra precisa comprar placa solar, aprovar projeto, lavar placas).</span>
+                 <span>Zero investimento: você não precisa comprar painéis solares, aprovar projeto nem fazer manutenção.</span>
               </div>
               <div className="flex items-center gap-3 text-slate-700 font-medium">
                  <div className="bg-green-100 p-1 rounded-full"><CheckCircle2 size={16} className="text-green-600" /></div>
-                 <span>Sem fidelidade ( cancele quando quiser).</span>
+                 <span>Sem fidelidade: cancele quando quiser.</span>
               </div>
               <div className="flex items-center gap-3 text-slate-700 font-medium">
                  <div className="bg-green-100 p-1 rounded-full"><CheckCircle2 size={16} className="text-green-600" /></div>
-                 <span>Economia de verdade</span>
+                 <span>Economia real, todo mês na sua conta de luz.</span>
               </div>
             </div>
           </div>
