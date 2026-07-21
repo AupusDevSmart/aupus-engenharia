@@ -13,7 +13,8 @@ export function middleware(request: NextRequest) {
       pathname.startsWith('/_next') ||
       pathname.startsWith('/api') ||
       pathname.includes('.') || // Arquivos com extensão (imagens, etc)
-      pathname.startsWith('/clube') // Já está na rota correta
+      pathname.startsWith('/clube') || // Já está na rota correta
+      pathname.startsWith('/politica-de-privacidade') // Página compartilhada entre os domínios
     ) {
       return NextResponse.next();
     }

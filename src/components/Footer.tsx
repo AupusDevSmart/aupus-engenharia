@@ -36,16 +36,6 @@ function LegalModal({ title, content, onClose }: { title: string, content: React
 }
 
 // --- CONTEÚDO DOS TEXTOS JURÍDICOS ---
-const privacyContent = (
-  <>
-    <p><strong>1. Coleta de Dados:</strong> A Aupus Engenharia coleta apenas os dados estritamente necessários (Nome, E-mail e Telefone) fornecidos voluntariamente através dos formulários de contato e WhatsApp para fins de atendimento comercial.</p>
-    <p><strong>2. Uso das Informações:</strong> As informações são utilizadas exclusivamente para: a) Retornar solicitações de orçamento; b) Enviar propostas técnicas; c) Comunicar atualizações sobre projetos em andamento.</p>
-    <p><strong>3. Compartilhamento:</strong> Não vendemos, alugamos ou compartilhamos seus dados com terceiros para fins de marketing. O compartilhamento ocorre apenas com o Grupo Santares (holding controladora) para fins administrativos.</p>
-    <p><strong>4. Segurança:</strong> Adotamos práticas de segurança digital alinhadas à LGPD para proteger seus dados contra acessos não autorizados.</p>
-    <p><strong>5. Seus Direitos:</strong> Você pode solicitar a exclusão ou alteração dos seus dados a qualquer momento enviando um e-mail para comercial@aupus.com.br.</p>
-  </>
-);
-
 const termsContent = (
   <>
     <p><strong>1. Propriedade Intelectual:</strong> Todo o conteúdo deste site (textos, imagens, logotipos e layouts) é propriedade exclusiva da Aupus Engenharia e do Grupo Santares. É proibida a reprodução sem autorização prévia.</p>
@@ -61,7 +51,7 @@ export default function Footer() {
   // Verifica se está na página do clube através do pathname ou do domínio
   const isClubePage = pathname === '/clube' || (typeof window !== 'undefined' && window.location.hostname === 'clube.aupusenergia.com.br');
 
-  const [activeModal, setActiveModal] = useState<'privacy' | 'terms' | null>(null);
+  const [activeModal, setActiveModal] = useState<'terms' | null>(null);
 
   return (
     <>
@@ -165,12 +155,12 @@ export default function Footer() {
              </span> */}
              
              <div className="flex gap-6">
-                <button 
-                  onClick={() => setActiveModal('privacy')} 
+                <a
+                  href="/politica-de-privacidade"
                   className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
                 >
                   <Shield size={12} /> Política de Privacidade
-                </button>
+                </a>
                 <button 
                   onClick={() => setActiveModal('terms')} 
                   className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
@@ -183,14 +173,6 @@ export default function Footer() {
       </footer>
 
       {/* RENDERIZAÇÃO CONDICIONAL DOS MODAIS */}
-      {activeModal === 'privacy' && (
-        <LegalModal 
-          title="Política de Privacidade e Proteção de Dados" 
-          content={privacyContent} 
-          onClose={() => setActiveModal(null)} 
-        />
-      )}
-
       {activeModal === 'terms' && (
         <LegalModal 
           title="Termos de Uso" 
