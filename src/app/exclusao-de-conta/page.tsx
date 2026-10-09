@@ -80,7 +80,7 @@ export default function ExclusaoDeContaPage() {
               <p><strong>Pelo aplicativo Smart Nexus:</strong></p>
               <ol className="list-decimal pl-6 space-y-2">
                 <li>Entre com seu e-mail e senha;</li>
-                <li>Abra <em>Perfil</em> e toque em <em>Excluir conta</em>;</li>
+                <li>Abra <em>Perfil</em> e toque em <em>Solicitar exclusão da conta</em>;</li>
                 <li>Confirme. A solicitação fica registrada e você recebe a confirmação por e-mail.</li>
               </ol>
               <p><strong>Pelo aplicativo NexON:</strong></p>
